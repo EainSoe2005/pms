@@ -36,8 +36,8 @@ app.use(
     saveUninitialized: true,
   })
 )
-
-mongoose.connect("mongodb://127.0.0.1/pmsdb");
+mongoose.connect("mongodb+srv://EainSoe:eainsoe2005@pms.52qnw.mongodb.net/?retryWrites=true&w=majority&appName=pms")
+//mongoose.connect("mongodb://127.0.0.1/pmsdb");
 const db =mongoose.connection;
 db.on("error",console.error.bind("Mongodb connection error at pmsdb"));
 
