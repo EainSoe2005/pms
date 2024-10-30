@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <% include ./partial/head %>
+
+  </head>
+  <body>
+    <!-- Start Homepage section-->
+    <div class="wrapper">
+      
+      <!-- Sidebar -->
+       <% include ./partial/sidebar %>
+       <div class="main">
+        <nav class="navbar navbar-expand px-3 border-bottom">
+
+        <!--Button for sidebar toggle-->
+        <button class="btn" type="button" data-bs-theme="dark">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <img src="/images/logo.jpg" class="admin-pic" style="width:45px; border-radius:50%; cursor: pointer; margin-left: auto;">
+        <p  style="font-weight: 300px; color:white; margin-top:10px; margin-left: 5px;">Admin</p>
+
+
+        </nav>
+        <main class="content px-3 py-2">
+
+          <div class="container-fluid">
+            <div class="mb-3">
+              <h1 >PMS Stock Management System</h1>
+            </div>
+          </div>
+        </main>
+       </div>
+    </div>     
+  </body>
+
+<% include ./partial/script %>
+   
+</html>

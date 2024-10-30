@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../partial/head %>
+  </head>
+  <body>
+    <!-- Start Homepage section-->
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <% include ../partial/sidebar %>
+      <div class="main">
+        <nav class="navbar navbar-expand px-3 border-bottom">
+          <!--Button for sidebar toggle-->
+          <button class="btn" type="button" data-bs-theme="dark">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <% include ../partial/account %>
+        </nav>
+        <main class="content px-3 py-2">
+          <div class="container-fluid">
+            <div class="mb-3">
+              <h1>Daily Report</h1>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-md-12 col-sm-12 "></div>
+              <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card w-full  " style="background-color: skyblue;">
+                  <div class="card-header h3 text-center ">Daily Report</div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="card " style="background-color: skyblue;">
+                          <div class="card-body">
+                            <h4 class="card-title text-center">Total Item</h4>
+                            <h5 class="card-text text-center">
+                              <%= qtyCount %>
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="card " style="background-color: skyblue;">
+                          <div class="card-body">
+                            <h4 class="card-title text-center">Sale Amount</h4>
+                            <h5 class="card-text text-center">
+                              <%= saleAmount %>
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row my-5">
+              <div class="col-lg-2 col-md-12 col-sm-12"></div>
+              <div class="col-lg-8 col-md-12 col-sm-12 text-center  ">
+                <table class="table  table-info" id="example">
+                  <thead>
+                    <th class="text-center">No</th>
+                    <th class="text-center">Item</th>
+                    <th class="text-center">Quantity</th>
+                  </thead>
+                  <tbody>
+                    <% for(var i = 0; i < info.length;i++){%>
+                    <tr>
+                      <td class="text-center"><%= i+ 1 %></td>
+                      <td class="text-center"><%= info[i].name %></td>
+                      <td class="text-center"><%= info[i].quantity %></td>
+                    </tr>
+                    <%}%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+  <% include ../partial/script %>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../partial/head %>
+    <link rel="stylesheet" href="/stylesheets/select2.min.css">
+    <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap5.css" />
+  </head>
+  <body>
+    <!-- Start Homepage section-->
+    <div class="wrapper">
+      
+      <!-- Sidebar -->
+      <% include ../partial/sidebar %>
+       <div class="main">
+        <nav class="navbar navbar-expand px-3 border-bottom">
+
+        <!--Button for sidebar toggle-->
+        <button class="btn" type="button" data-bs-theme="dark">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <% include ../partial/account %>
+        </nav>
+        <main class="content px-3 py-2">
+
+          <div class="container-fluid">
+            <div class="mb-3">
+              <h1>Stock Adjustment</h1>
+
+
+              <div class="container-fluid mt-3" >
+                <div class="container mt-3 mb-3"  >
+                    <form action="#" >
+                      <div class="card bg-info" style="text-align: center; width: 450px; margin: auto; padding: 50px;">
+                        <label for="StockName" >Stock Name: </label>
+                            <select class="form-select" id="stk" name="StockName">
+                              <% for(var i = 0; i < items.length;i++){%>
+                                <option value="<%= items[i]._id %>"><%= items[i].name %>(<%= items[i].id %>)</option>
+                              <%}%>
+                              </select>
+                           </form>
+                           <div class="mb-3 mt-3" style="text-align: center; padding-top: 4px; padding-top: 8px;"><button type="button"  class="btn btn-primary" onclick="goAdd()">Check</button>
+                         </div>
+                         </div>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="row">
+              <div class="col-lg-2 col-md-12 col-sm-12"></div>
+              <div class="col-lg-8 col-md-12 col-sm-12">
+                <table class="table" id="example">
+                  <thead >
+                    <th class="text-center">No</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Reduce Quantity</th>
+                    <th class="text-center">Remark</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Action</th>
+                  </thead>
+                  <tbody>
+                    <% for(var i = 0; i < stockadjs.length;i++){%>
+                      <tr>
+                        <td><%= i+ 1 %></td>
+                        <td><%= stockadjs[i].itemId.name %></td>
+                        <td><%= stockadjs[i].itemId.id %></td>
+                        <td><%= stockadjs[i].reduceQty %></td>
+                        <td><%= stockadjs[i].remark %></td>
+                        <td><%= new Date(stockadjs[i].created).toDateString() %></td>
+                        <td><button class="btn btn-danger" onclick="delFun('<%= stockadjs[i]._id %>','<%= stockadjs[i].itemId._id %>','<%= stockadjs[i].reduceQty %>')">Delete</button></td>
+                      </tr>
+                    <%}%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+       </div>
+    </div>      
+  </body>
+
+  <% include ../partial/script %>
+  <script src="/javascripts/select2.min.js"></script>
+  <script src="/javascripts/dataTables.js"></script>
+  <script src="/javascripts/dataTables.bootstrap5.js"></script>
+
+  <script>
+    new DataTable("#example");
+    var stk = $("#stk");
+    stk.select2();
+    function goAdd(){
+      location.href = "/stockadjustment/add/"+$("#stk").val();
+    }
+    function delFun(id,itemId,qty){
+      var opt = confirm("Are you sure for delete?");
+      if(opt){
+        const data = {id:id,qty:qty,itemId:itemId};
+      $.ajax("/stockadjustment/delete", {
+          type: "POST",
+          data: data,
+          success: function (result) {
+            if(result.status){
+              location.reload();
+            }else{
+              alert("Somethings was wrong");
+            }
+          },
+        });
+      }
+      
+    }
+  </script>
+</html>

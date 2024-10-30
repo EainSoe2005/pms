@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ./partial/head %>
+  </head>
+  <body>
+    <!-- Start Homepage section-->
+    <div class="wrapper">
+      
+      <!-- Sidebar -->
+       <% include ./partial/sidebar %>
+       <div class="main">
+        <nav class="navbar navbar-expand px-3 border-bottom">
+
+        <!--Button for sidebar toggle-->
+        <button class="btn" type="button" data-bs-theme="dark">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+       <% include ./partial/account %>
+        </nav>
+        <main class="content px-3 py-2">
+
+          <div class="container-fluid">
+            <div class="mb-3">
+              <h1 >Pocket Stock Management System (PSMS)</h1>
+
+
+              <div class="container-fluid mt-3">
+                <div class="row">
+                    <div class="col-lg-4 mt-2">
+                        <div class="card " style="background-color: slateblue;">
+                            <div class="card-body">
+                                <h4 class="card-name">Total Stocks</h4>
+                                
+                                <div class="icon row">
+                                  <h1 class="col"><%= stockCount %></h1>
+                                  <i class="fa-solid fa-cart-shopping col"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <div class="card " style="background-color: mediumseagreen;">
+                            <div class="card-body">
+                                <h4 class="card-name">Total Categorys</h4>
+                                <div class="icon row">
+                                  <h1 class="col"><%= categoryCount %></h1>
+                                  <i class="fa-solid fa-layer-group col"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <div class="card " style="background-color: orange;">
+                            <div class="card-body">
+                                <h4 class="card-name">Total Class</h4>
+                                <div class="icon row">
+                                  <h1 class="col"><%= classCount %></h1>
+                                  <i class="fa-solid fa-bars col"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 mt-2">
+                        <div class="card " style="background-color: cornflowerblue;">
+                            <div class="card-body">
+                                <h4 class="card-name">Total Suppliers</h4>
+                                <div class="icon row">
+                                  <h1 class="col"><%= supplierCount %></h1>
+                                  <i class="fa-solid fa-user-group col"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <div class="card " style="background-color: rgb(222, 72, 152);">
+                            <div class="card-body">
+                                <h4 class="card-name">Total Sale Amount</h4>
+                                <div class="icon row">
+                                  <h1 class="col"><%= totalSale[0]?.sale ? totalSale[0].sale: 0 %></h1>
+                                  <i class="fa-solid fa-arrow-trend-up col"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-2">
+                        <div class="card" style="background-color: salmon;">
+                            <div class="card-body">
+                                <h4 class="card-name">Total Staff</h4>
+                                <div class="icon row">
+                                  <h1 class="col"><%= staffCount %></h1>
+                                  <i class="fa-solid fa-users col"></i>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                        <table class="table  table-bordered border-black table-responsive table-info " style="margin-top: 25px; border: 3px; text-align: center;">
+                             <thead>
+                                <th colspan="4" class="table-danger border-black">Top <i> 10</i> Best Seller Items</th>
+                                    <tr>
+                                       <th scope="col">NO</th>
+                                       <th scope="col">Name</th>
+                                       <th scope="col">Quantity</th>
+                                    </tr>
+                             </thead> 
+                             <tbody>
+                              <% for(var i = 0; i < topSale.length; i++){%>
+                                <tr>
+                                  <th scope="row"><%= i+ 1 %></th>
+                                  <th><%= topSale[i].name %></th>
+                                  <td><%= topSale[i].quantity %></td>
+                               </tr>
+                              <%}%>
+                             </tbody>
+                                    
+                                   
+                            </table>
+                    </div>
+            </div>
+        
+
+            </div>
+          </div>
+        </main>
+       </div>
+    </div>      
+  </body>
+  <% include ./partial/script %>
+  <script type="module" src="/javascripts/ionicons.esm.js"></script>
+    <script nomodule src="/javascripts/ionicons.js"></script>
+   
+</html>
